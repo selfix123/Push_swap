@@ -6,7 +6,7 @@
 /*   By: zbeaumon <zbeaumon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:50:06 by zbeaumon          #+#    #+#             */
-/*   Updated: 2023/05/24 13:09:55 by zbeaumon         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:41:37 by zbeaumon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,16 @@ int	lstlen(t_data *data)
 	return (i);
 }
 
-int	is_list_in_order(t_data *data)
+int	is_list_in_order(t_data **data)
 {
-	t_data	*head;
+	t_data	*ptr;
 
-	head = data;
-	if (!data)
-		return (0);
-	while (data->next != head)
+	ptr = *data;
+	while (ptr->next != *data)
 	{
-		if (data->content < data->next->content)
-			data = data->next;
-		else
+		if (ptr->next->content < ptr->content)
 			return (1);
+		ptr = ptr->next;
 	}
 	return (0);
 }
@@ -84,8 +81,10 @@ int	*temp_array(int ac, char **av)
 	int	*temp;
 
 	i = -1;
-	temp = ft_calloc(ac, sizeof(int));
-	while (++i < ac - 1)
-		temp[i] = ft_atoi(av[i + 1]);
+	temp = ft_calloc(ac + 1, sizeof(int));
+	if (!temp)
+		return (NULL);
+	while (++i < ac)
+		temp[i] = ft_atoi(av[i]);
 	return (temp);
 }

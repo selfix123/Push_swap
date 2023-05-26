@@ -6,7 +6,7 @@
 /*   By: zbeaumon <zbeaumon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:06:18 by zbeaumon          #+#    #+#             */
-/*   Updated: 2023/05/26 11:21:43 by zbeaumon         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:08:46 by zbeaumon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ t_data	*init(int ac, char **av)
 	tmp = temp_array(ac, av);
 	if (!tmp)
 		return (NULL);
-	a = ft_calloc(1, sizeof(t_piles));
+	a = (t_data *)ft_calloc(1, sizeof(t_data));
 	if (!a)
 		return (ft_xfree(tmp), NULL);
+	a->next = a;
+	a->previous = a;
+	a->content = index_nb(tmp, 0, ac);
 	i = 1;
-	while (i < ac - 1)
+	while (i < ac)
 	{
-		if (ft_dlstadd_back(&a, tmp, i, ac))
-			return (free__piles(a), ft_xfree(tmp), NULL);
+		if (pile_add_end(index_nb(tmp, i, ac), &a))
+			return (free_piles(a), ft_xfree(tmp), NULL);
 		i++;
 	}
 	return (ft_xfree(tmp), a);

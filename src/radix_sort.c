@@ -6,7 +6,7 @@
 /*   By: zbeaumon <zbeaumon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:35:39 by zbeaumon          #+#    #+#             */
-/*   Updated: 2023/05/23 15:24:29 by zbeaumon         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:15:23 by zbeaumon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	radix_sort(t_piles *piles)
 	int		i;
 
 	j = 0;
-	while (is_list_in_order(piles->a))
+	while (is_list_in_order(&piles->a))
 	{
 		i = 0;
 		while (i++ < piles->total)

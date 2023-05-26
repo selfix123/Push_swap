@@ -6,7 +6,7 @@
 /*   By: zbeaumon <zbeaumon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:48:59 by zbeaumon          #+#    #+#             */
-/*   Updated: 2023/05/26 11:25:27 by zbeaumon         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:47:01 by zbeaumon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ static int	check_double(int ac, char **av)
 		while (j < ac)
 		{
 			if (temp[i] == temp[j])
-				return (ft_xfree(temp), 1);
+				return (free(temp), 1);
 			j++;
 		}
 		i++;
 	}
-	return (ft_xfree(temp), 1);
+	return (free(temp), 0);
 }
 
 int	error_input(int ac, char **av)
