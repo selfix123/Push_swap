@@ -6,7 +6,7 @@
 /*   By: zbeaumon <zbeaumon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:49:25 by zbeaumon          #+#    #+#             */
-/*   Updated: 2023/05/26 16:48:02 by zbeaumon         ###   ########.fr       */
+/*   Updated: 2023/05/29 10:13:50 by zbeaumon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ static void	select_algo(t_piles *piles)
 		all_small_sort(piles);
 	else
 		radix_sort(piles);
-}
-
-void	printdata(t_data *data)
-{
-	t_data	*head;
-
-	head = data;
-	if (!data)
-	{
-		printf("(null)\n");
-		return ;
-	}
-	printf("%d\n", data->content);
-	data = data->next;
-	while (data != head)
-	{
-		printf("%d\n", data->content);
-		data = data->next;
-	}
 }
 
 int	main(int ac, char **av)

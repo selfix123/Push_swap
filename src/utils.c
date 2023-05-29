@@ -6,7 +6,7 @@
 /*   By: zbeaumon <zbeaumon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:38:06 by zbeaumon          #+#    #+#             */
-/*   Updated: 2023/05/26 16:10:01 by zbeaumon         ###   ########.fr       */
+/*   Updated: 2023/05/29 10:28:50 by zbeaumon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,56 +28,32 @@ int	index_nb(int *temp, int index, int len)
 	return (count + 1);
 }
 
-// t_data	*ft_dlstnew(int content)
-// {
-// 	t_data	*new;
-
-// 	new = ft_calloc(sizeof(t_data), 1);
-// 	if (!new)
-// 		return (NULL);
-// 	new->index = 0;
-// 	new->content = content;
-// 	new->next = new;
-// 	new->previous = new;
-// 	return (new);
-// }
-
-// int	ft_dlstadd_back(t_data **lst, int *temp, int i, int ac)
-// {
-// 	t_data	*ptr;
-// 	t_data	*head;
-
-// 	if (!*lst)
-// 		*lst = ft_dlstnew(index_nb(temp, i, ac));
-// 	else
-// 	{
-// 		head = (*lst);
-// 		ptr = ft_calloc(1, sizeof(t_data));
-// 		if (!ptr)
-// 			return (1);
-// 		ptr->content = index_nb(temp, i, ac);
-// 		ptr->previous = head->previous;
-// 		ptr->next = head;
-// 		ptr->next->previous = ptr;
-// 		ptr->previous->next = ptr;
-// 		(*lst) = head;
-// 	}
-// 	return (0);
-// }
-
-int	pile_add_end(int data, t_data **pile)
+int	is_list_in_order(t_data **data)
 {
-	t_data	*new;
+	t_data	*ptr;
 
-	new = (t_data *)ft_calloc(1, sizeof(t_data));
-	if (!new)
-		return (1);
-	new->content = data;
-	new->previous = (*pile)->previous;
-	(*pile)->previous->next = new;
-	new->next = *pile;
-	(*pile)->previous = new;
+	ptr = *data;
+	while (ptr->next != *data)
+	{
+		if (ptr->next->content < ptr->content)
+			return (1);
+		ptr = ptr->next;
+	}
 	return (0);
+}
+
+int	*temp_array(int ac, char **av)
+{
+	int	i;
+	int	*temp;
+
+	i = -1;
+	temp = ft_calloc(ac + 1, sizeof(int));
+	if (!temp)
+		return (NULL);
+	while (++i < ac)
+		temp[i] = ft_atoi(av[i]);
+	return (temp);
 }
 
 static size_t	ft_word_count(char const *s, char c)
@@ -120,3 +96,5 @@ char	**get_total_args(int *ac, char **av, t_piles *piles)
 	}
 	return (new_argv);
 }
+
+

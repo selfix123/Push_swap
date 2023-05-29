@@ -12,7 +12,6 @@ CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
-# Sources are all .c files
 SRCS	=	utils.c\
 			push_swap.c\
 			rr.c\
